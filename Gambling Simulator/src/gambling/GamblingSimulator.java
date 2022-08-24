@@ -10,7 +10,7 @@ public class GamblingSimulator {
 		System.out.println("This program simulates a Gambler who starts with a stake, and bets every game to win or to lose some stake. \nBeing a Calculative Gambler, he exits if the Stake reaches a high or a low limit.\n");
 		GamblingSimulator gambler = new GamblingSimulator();
 		gambler.gameInitialise();
-		gambler.makeBet();
+		gambler.gamble();
 	}
 	
 	public void gameInitialise() {
@@ -41,5 +41,14 @@ public class GamblingSimulator {
 		else
 			System.out.println("Bet LOST!");
 		System.out.println("Funds : $"+funds);
+	}
+	
+	public void gamble() {
+		int minimumFund = funds - (funds/2);
+		int maximumFund = funds + (funds/2);
+		while(funds < maximumFund && funds > minimumFund) {
+			makeBet();
+		}
+		System.out.println("\nPlayer resigns for the day.");
 	}
 }
