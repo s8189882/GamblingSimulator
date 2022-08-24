@@ -9,7 +9,7 @@ public class GamblingSimulator {
 	public int cumulativeFunds = 0;
 	public int daysWon = 0;
 	public int daysLost = 0;
-	public boolean[] daysArray = new boolean [21];
+	public boolean[] daysArray = new boolean [20];
 	public boolean wonOrNot = false;
 	
 	public static void main(String[] args) {
