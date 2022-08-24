@@ -7,6 +7,8 @@ public class GamblingSimulator {
 	public int cumulativeFunds = 0;
 	public int daysWon = 0;
 	public int daysLost = 0;
+	public boolean[] daysArray = new boolean [20];
+
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Gambling Simulator in Java Program!");
@@ -14,6 +16,8 @@ public class GamblingSimulator {
 		GamblingSimulator gambler = new GamblingSimulator();
 		gambler.gameInitialise();
 		gambler.dailyGamble();
+		gambler.displayTwentyDaysResult();
+		gambler.displayLuckyDays();
 	}
 	
 	public void gameInitialise() {
@@ -54,10 +58,12 @@ public class GamblingSimulator {
 		if(funds == 150) {
 			cumulativeFunds += 150;
 			daysWon++;
+			daysArray[daysWon+daysLost] = true;
 		}
 		else if (funds == 50) {
 			cumulativeFunds += 50;
 			daysLost++;
+			daysArray[daysWon+daysLost] = false;
 		}
 		System.out.println("\nPlayer resigns for the day.");
 	}
@@ -67,7 +73,6 @@ public class GamblingSimulator {
 			funds = 100;
 			gamble();
 		}
-		this.displayTwentyDaysResult();
 	}
 	
 	public void displayTwentyDaysResult() {
@@ -80,5 +85,16 @@ public class GamblingSimulator {
 			System.out.println("Total Funds Lost :	$"+((100*20)-cumulativeFunds));
 		System.out.println("Total Funds Remaining :	$"+cumulativeFunds);
 			
+	}
+	
+	public void displayLuckyDays() {
+		System.out.println("\n\nLucky days : ");
+		for (int i = 0; i < daysArray.length; i++)
+			if (daysArray[i])
+				System.out.print("   Day "+(i+1));
+		System.out.println("\n\nUnlucky days : ");
+		for (int i = 0; i < daysArray.length; i++)
+			if (!daysArray[i])
+				System.out.print("   Day "+(i+1));
 	}
 }
