@@ -5,6 +5,8 @@ public class GamblingSimulator {
 	public int bet = 0;
 	public int wins = 0;
 	public int cumulativeFunds = 0;
+	public int daysWon = 0;
+	public int daysLost = 0;
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Gambling Simulator in Java Program!");
@@ -49,10 +51,14 @@ public class GamblingSimulator {
 		int maximumFund = funds + (funds/2);
 		while(funds < maximumFund && funds > minimumFund) 
 			makeBet();
-		if(funds == 150)
+		if(funds == 150) {
 			cumulativeFunds += 150;
-		else if (funds == 50)
+			daysWon++;
+		}
+		else if (funds == 50) {
 			cumulativeFunds += 50;
+			daysLost++;
+		}
 		System.out.println("\nPlayer resigns for the day.");
 	}
 	
@@ -66,10 +72,13 @@ public class GamblingSimulator {
 	
 	public void displayTwentyDaysResult() {
 		System.out.println("\n\nFunds Stats after 20 days of Gambling...");
+		System.out.println("Number of days won funds :	"+daysWon);
+		System.out.println("Number of days lost funds :	"+daysLost);	
 		if (cumulativeFunds > (100*20))
-			System.out.println("Total Funds Won : $"+(cumulativeFunds-(100*20)));
+			System.out.println("Total Funds Won :	$"+(cumulativeFunds-(100*20)));
 		else
-			System.out.println("Total Funds Lost : $"+((100*20)-cumulativeFunds));
-		System.out.println("Total Funds : $"+cumulativeFunds);
+			System.out.println("Total Funds Lost :	$"+((100*20)-cumulativeFunds));
+		System.out.println("Total Funds Remaining :	$"+cumulativeFunds);
+			
 	}
 }
