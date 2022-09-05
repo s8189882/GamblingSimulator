@@ -9,7 +9,7 @@ public class GamblingSimulator {
 	public int cumulativeFunds = 0;
 	public int daysWon = 0;
 	public int daysLost = 0;
-	public boolean[] daysArray = null;
+	public boolean[] daysArray = new boolean [20];
 	public boolean wonOrNot = false;
 	
 	public static void main(String[] args) {
@@ -23,7 +23,11 @@ public class GamblingSimulator {
 		System.out.println("\nInitialising game...");
 		funds = 100;
 		bet = 1;
-		daysArray = new boolean [20];
+		wins = 0;
+		cumulativeFunds = 0;
+		daysWon = 0;
+		daysLost = 0;
+		wonOrNot = false;
 		System.out.println("Funds : $"+funds);
 	}
 	
@@ -57,12 +61,12 @@ public class GamblingSimulator {
 		if(funds == 150) {
 			cumulativeFunds += 150;
 			daysWon++;
-			daysArray[daysWon+daysLost] = true;
+			daysArray[daysWon+daysLost-1] = true;
 		}
 		else if (funds == 50) {
 			cumulativeFunds += 50;
 			daysLost++;
-			daysArray[daysWon+daysLost] = false;
+			daysArray[daysWon+daysLost-1] = false;
 		}
 		System.out.println("\nPlayer resigns for the day.");
 	}
